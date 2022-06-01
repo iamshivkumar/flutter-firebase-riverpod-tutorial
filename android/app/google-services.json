@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "543292784395",
+    "project_id": "auth-app-4c15f",
+    "storage_bucket": "auth-app-4c15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543292784395:android:b4cabb6ef3e4de4d596c0e",
+        "android_client_info": {
+          "package_name": "com.shivkumar.authapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543292784395-rc4od7amr5c1e7ju4to4jb2ac5q2ktdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASElMDDfWua9Ns_j4QP2EN54n2CwS6bVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543292784395-rc4od7amr5c1e7ju4to4jb2ac5q2ktdj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "543292784395-7vs9tht112ng11j9pgs8qn0kin8j77vh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shivkumar.authapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
