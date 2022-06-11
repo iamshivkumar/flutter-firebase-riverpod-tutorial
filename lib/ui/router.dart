@@ -1,4 +1,5 @@
 import 'package:auth_app_1/ui/auth/register_page.dart';
+import 'package:auth_app_1/ui/items/write_item_page.dart';
 import 'package:auth_app_1/ui/onboarding/onboarding_page.dart';
 import 'package:auth_app_1/ui/root.dart';
 import 'package:auth_app_1/ui/splash/splash_page.dart';
@@ -9,12 +10,14 @@ class AppRouter {
     late final Widget selectedPage;
 
     switch (settings.name) {
-    
       case SplashPage.route:
         selectedPage = const SplashPage();
         break;
       case RegisterPage.route:
-        selectedPage =  RegisterPage();
+        selectedPage = RegisterPage();
+        break;
+      case WriteItemPage.route:
+        selectedPage = const WriteItemPage();
         break;
       default:
         selectedPage = const Root();

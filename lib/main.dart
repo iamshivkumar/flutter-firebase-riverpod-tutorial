@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: Labels.appName,
       theme: ThemeData(
+        cardTheme: const CardTheme(
+          clipBehavior: Clip.antiAlias
+        ),
         useMaterial3: true,
         colorScheme: colorScheme,
         primaryColor: colorScheme.primary,
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
+          contentPadding: EdgeInsets.symmetric(horizontal: 16,vertical: 20)
         ),
       ),
       initialRoute: SplashPage.route,
