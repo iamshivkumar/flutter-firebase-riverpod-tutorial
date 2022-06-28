@@ -1,10 +1,12 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:auth_app_1/ui/auth/providers/auth_view_model_provider.dart';
 import 'package:auth_app_1/ui/components/snackbar.dart';
 import 'package:auth_app_1/ui/root.dart';
 import 'package:auth_app_1/utils/labels.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EmailVerifyPage extends ConsumerStatefulWidget {
   const EmailVerifyPage({Key? key}) : super(key: key);

@@ -6,11 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -23,9 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: Labels.appName,
       theme: ThemeData(
-        cardTheme: const CardTheme(
-          clipBehavior: Clip.antiAlias
-        ),
+        cardTheme: const CardTheme(clipBehavior: Clip.antiAlias),
         useMaterial3: true,
         colorScheme: colorScheme,
         primaryColor: colorScheme.primary,
@@ -36,12 +32,18 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           headlineLarge: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black
+            color: Colors.black,
           ),
+        ).apply(
+          displayColor: colorScheme.onSurface.withOpacity(0.75),
+          bodyColor: colorScheme.onSurface,
         ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
-          contentPadding: EdgeInsets.symmetric(horizontal: 16,vertical: 20)
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 20,
+          ),
         ),
       ),
       initialRoute: SplashPage.route,
