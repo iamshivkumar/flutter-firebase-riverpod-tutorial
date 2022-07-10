@@ -38,7 +38,19 @@ class ItemRepository {
             .toList(),
       );
 
-  void delete(String id){
+  void delete(String id) {
     _firestore.collection("items").doc(id).delete();
+  }
+
+  Future<List<DocumentSnapshot>> itemsPaginateFuture(
+      {required int limit, DocumentSnapshot? lastDocument}) async {
+    var docRef =
+        _firestore.collection('items').orderBy('createdAt', descending: true);
+
+    if (lastDocument != null) {
+      docRef = docRef.startAfterDocument(lastDocument);
+    }
+
+    return docRef.limit(limit).get().then((value) => value.docs);
   }
 }

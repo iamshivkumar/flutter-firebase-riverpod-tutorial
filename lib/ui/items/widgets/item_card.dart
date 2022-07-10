@@ -95,9 +95,12 @@ class ItemCard extends ConsumerWidget {
                             style: style.titleMedium,
                             maxLines: 2,
                           ),
-                          Text(
-                            "${e.description}\n",
-                            maxLines: 2,
+                          Expanded(
+                            child: Text(
+                              "${e.description}\n",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),

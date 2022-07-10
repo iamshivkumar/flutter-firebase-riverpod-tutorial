@@ -2,6 +2,7 @@ import 'package:auth_app_1/ui/providers/cache_provider.dart';
 import 'package:auth_app_1/ui/root.dart';
 import 'package:auth_app_1/utils/labels.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
