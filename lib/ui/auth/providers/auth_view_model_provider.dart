@@ -200,10 +200,10 @@ class AuthViewModel extends ChangeNotifier {
           verficationId = id;
           if (resendToken != null) {
             onMessage("Code resent!");
+            notifyListeners();
           }
           stream = _stream;
           resendToken = forceResendingToken;
-          notifyListeners();
           _loading.stop();
           onCodeSent();
         },
