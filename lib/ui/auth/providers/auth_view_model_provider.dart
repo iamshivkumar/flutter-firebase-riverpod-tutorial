@@ -2,7 +2,9 @@ import 'package:auth_app_1/ui/providers/loading_provider.dart';
 import 'package:auth_app_1/utils/labels.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 final authViewModelProvider = ChangeNotifierProvider(
   (ref) => AuthViewModel(ref.read),
@@ -62,8 +64,6 @@ class AuthViewModel extends ChangeNotifier {
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
     return !RegExp(format).hasMatch(value) ? Labels.enterValidEmail : null;
   }
-
-  Loading get _loading => _reader(loadingProvider);
 
   Future<void> login() async {
     _loading.start();
@@ -145,5 +145,87 @@ class AuthViewModel extends ChangeNotifier {
         onDone();
       }
     });
+  }
+
+  String _phone = '';
+  String get phone => _phone;
+  set phone(String phone) {
+    _phone = phone;
+    resendToken = null;
+    notifyListeners();
+  }
+
+  String? verficationId;
+
+  int? resendToken;
+
+  Loading get _loading => _reader(loadingProvider);
+
+  final formatter = MaskTextInputFormatter(
+      mask: '# - # - # - # - # - #', filter: {"#": RegExp(r'[0-9]')});
+
+  late Stream<int> stream;
+
+  Stream<int> get _stream => Stream.periodic(
+        const Duration(seconds: 1),
+        (i) => 30 - i,
+      );
+
+  void sendOtp(
+      {required VoidCallback onCodeSent,
+      required Function(String) onMessage,
+      required Function(String) onError,
+      required VoidCallback onCompleted}) {
+    try {
+      _loading.start();
+      _auth.verifyPhoneNumber(
+        forceResendingToken: resendToken,
+        phoneNumber: "+91$phone",
+        verificationCompleted: (phoneAuthCredential) async {
+          _loading.start();
+          try {
+            await _auth.signInWithCredential(phoneAuthCredential);
+            onCompleted();
+          } on FirebaseAuthException catch (e) {
+            onError(e.message ?? e.code);
+          }
+          _loading.stop();
+        },
+        verificationFailed: (error) {
+          debugPrint("$error");
+          _loading.stop();
+          onError(error.message ?? error.code);
+        },
+        codeSent: (id, forceResendingToken) {
+          verficationId = id;
+          if (resendToken != null) {
+            onMessage("Code resent!");
+          }
+          stream = _stream;
+          resendToken = forceResendingToken;
+          notifyListeners();
+          _loading.stop();
+          onCodeSent();
+        },
+        // timeout: const Duration(seconds: 0),
+        codeAutoRetrievalTimeout: (verificationId) {},
+      );
+    } catch (e) {
+      onError("Something error!");
+    }
+  }
+
+  Future<void> validatePhone(String code) async {
+    _loading.start();
+    try {
+      final creds = PhoneAuthProvider.credential(
+          verificationId: verficationId!, smsCode: code);
+      await _auth.signInWithCredential(creds);
+      _loading.end();
+    } on FirebaseAuthException catch (e) {
+      _loading.stop();
+
+      return Future.error(e.message ?? e.code);
+    }
   }
 }

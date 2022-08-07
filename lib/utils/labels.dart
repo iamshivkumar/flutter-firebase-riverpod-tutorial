@@ -1,4 +1,3 @@
-import 'dart:collection';
 
 class Labels {
   static const String alreadyHaveAnAccount = "Already have an account? ";

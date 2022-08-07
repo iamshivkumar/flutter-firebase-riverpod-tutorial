@@ -1,3 +1,4 @@
+import 'package:auth_app_1/ui/auth/enter_phone_page.dart';
 import 'package:auth_app_1/ui/auth/login_page.dart';
 import 'package:auth_app_1/ui/auth/providers/auth_view_model_provider.dart';
 import 'package:auth_app_1/ui/home/home_page.dart';
@@ -7,8 +8,6 @@ import 'package:auth_app_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'auth/email_verify_page.dart';
 
 class Root extends ConsumerWidget {
   const Root({Key? key}) : super(key: key);
@@ -22,9 +21,7 @@ class Root extends ConsumerWidget {
     return !seen
         ? const OnboardingPage()
         : auth.user != null
-            ? auth.user!.emailVerified
-                ? const HomePage()
-                : const EmailVerifyPage()
-            : LoginPage();
+            ? HomePage()
+            : EnterPhonePage();
   }
 }

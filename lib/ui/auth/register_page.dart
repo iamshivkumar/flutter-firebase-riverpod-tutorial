@@ -1,6 +1,7 @@
 import 'package:auth_app_1/ui/components/loading_layer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../utils/labels.dart';

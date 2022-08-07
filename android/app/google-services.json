@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "543292784395-49v6hbdtlgqroi1lefokmhspc3qrg20f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shivkumar.authapp",
+            "certificate_hash": "e9c6272c0207009a287213dc28dc2cf6c3101e9c"
+          }
+        },
+        {
           "client_id": "543292784395-rc4od7amr5c1e7ju4to4jb2ac5q2ktdj.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -31,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "543292784395-7vs9tht112ng11j9pgs8qn0kin8j77vh.apps.googleusercontent.com",
+              "client_id": "543292784395-5pvf5hhg8dmsd617hrp97atgts89j92j.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.shivkumar.authapp"
+                "bundle_id": "com.shivkumar.authApp1"
               }
             }
           ]
